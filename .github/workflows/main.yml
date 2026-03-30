@@ -3,7 +3,8 @@ name: "Release Tauri 2.0 App (Bun)"
 on:
   push:
     tags:
-      - 'v*' # 当推送形如 v0.1.0 的 tag 时触发
+      - "v*" # 当推送形如 v0.1.0 的 tag 时触发
+  workflow_dispatch: # 手动触发
 
 jobs:
   release:
