@@ -1,0 +1,63 @@
+name: "Release Tauri 2.0 App (Bun)"
+
+on:
+  push:
+    tags:
+      - 'v*' # 当推送形如 v0.1.0 的 tag 时触发
+
+jobs:
+  release:
+    permissions:
+      contents: write # 必须赋予写入权限以创建 Release
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-22.04, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Bun 环境
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 设置 Rust 环境
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # macOS 下同时编译 Intel 和 Apple Silicon (M1/M2/M3) 架构
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: 开启 Rust 缓存加速
+        uses: swatinem/rust-cache@v2
+
+      # 【关键修改】：这是 Tauri 2.0 官方推荐的 Linux 依赖库
+      - name: 安装 Linux 系统依赖 (仅限 Ubuntu)
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev
+
+      - name: 安装项目前端依赖
+        run: bun install
+
+      - name: 编译前端并打包 Tauri 应用
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: "Markdown Editor ${{ github.ref_name }}"
+          releaseBody: "基于 React + Bun + Tauri 2.0 构建的全新版本。"
+          releaseDraft: true
+          prerelease: false
