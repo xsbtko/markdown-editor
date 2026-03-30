@@ -6,7 +6,6 @@ src-tauri/target
 # local env files
 .env.local
 .env.*.local
-bun.lock
 
 # Log files
 npm-debug.log*
