@@ -1,0 +1,490 @@
+/* Markdown Editor Styles */
+.markdown-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e1e4e8;
+  flex-wrap: wrap;
+}
+
+.toolbar button {
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #586069;
+  transition: all 0.2s;
+  min-width: 32px;
+}
+
+.toolbar button:hover {
+  background: #e1e4e8;
+  border-color: #d1d5da;
+}
+
+.toolbar button:active {
+  background: #d1d5da;
+}
+
+.toolbar .divider {
+  width: 1px;
+  height: 20px;
+  background: #d1d5da;
+  margin: 0 4px;
+}
+
+/* Editor Container */
+.editor-container {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Textarea */
+.editor-textarea {
+  flex: 1;
+  width: 50%;
+  padding: 24px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #24292e;
+  background: #fafbfc;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-y: auto;
+}
+
+.editor-textarea::placeholder {
+  color: #959da5;
+}
+
+/* Preview */
+.editor-preview {
+  flex: 1;
+  width: 50%;
+  padding: 24px;
+  overflow-y: auto;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #24292e;
+  background: #ffffff;
+}
+
+.editor-preview.typing {
+  opacity: 0.7;
+}
+
+/* Markdown Content Styles */
+.editor-preview h1,
+.editor-preview h2,
+.editor-preview h3,
+.editor-preview h4,
+.editor-preview h5,
+.editor-preview h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #24292e;
+}
+
+.editor-preview h1 {
+  font-size: 2em;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 0.3em;
+}
+
+.editor-preview h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 0.3em;
+}
+
+.editor-preview h3 {
+  font-size: 1.25em;
+}
+
+.editor-preview h4 {
+  font-size: 1em;
+}
+
+.editor-preview h5 {
+  font-size: 0.875em;
+}
+
+.editor-preview h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+.editor-preview p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.editor-preview a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.editor-preview a:hover {
+  text-decoration: underline;
+}
+
+.editor-preview strong {
+  font-weight: 600;
+}
+
+.editor-preview em {
+  font-style: italic;
+}
+
+.editor-preview del {
+  text-decoration: line-through;
+}
+
+/* Lists */
+.editor-preview ul,
+.editor-preview ol {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-left: 2em;
+}
+
+.editor-preview ul ul,
+.editor-preview ul ol,
+.editor-preview ol ol,
+.editor-preview ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.editor-preview li {
+  margin-bottom: 4px;
+}
+
+.editor-preview li > p {
+  margin-bottom: 0;
+}
+
+/* Task Lists */
+.editor-preview ul.contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.editor-preview .task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.editor-preview .task-list-item input[type="checkbox"] {
+  margin-top: 5px;
+}
+
+/* Blockquotes */
+.editor-preview blockquote {
+  margin: 0 0 16px;
+  padding: 0 16px;
+  color: #6a737d;
+  border-left: 4px solid #dfe2e5;
+}
+
+.editor-preview blockquote > :first-child {
+  margin-top: 0;
+}
+
+.editor-preview blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+.editor-preview code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+.editor-preview pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.editor-preview pre code {
+  display: block;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+/* Tables */
+.editor-preview table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 16px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.editor-preview table th,
+.editor-preview table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.editor-preview table th {
+  font-weight: 600;
+  background-color: #f6f8fa;
+}
+
+.editor-preview table tr {
+  background-color: #ffffff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.editor-preview table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+/* Horizontal Rule */
+.editor-preview hr {
+  height: 4px;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+/* Images */
+.editor-preview img {
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+/* Inline code specific */
+.inline-code {
+  background-color: rgba(27, 31, 35, 0.05) !important;
+  color: #24292e;
+}
+
+/* KaTeX Styles */
+.editor-preview .katex {
+  font-size: 1.1em;
+}
+
+.editor-preview .katex-display {
+  margin: 1em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.editor-preview .katex-display .katex {
+  font-size: 1.21em;
+}
+
+.editor-preview .katex-error {
+  color: #d73a49;
+  background-color: #ffeef0;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  gap: 16px;
+  padding: 6px 16px;
+  background: #f8f9fa;
+  border-top: 1px solid #e1e4e8;
+  font-size: 12px;
+  color: #586069;
+}
+
+/* Scrollbar Styles */
+.editor-textarea::-webkit-scrollbar,
+.editor-preview::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.editor-textarea::-webkit-scrollbar-track,
+.editor-preview::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-textarea::-webkit-scrollbar-thumb,
+.editor-preview::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+
+.editor-textarea::-webkit-scrollbar-thumb:hover,
+.editor-preview::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .markdown-editor {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+
+  .toolbar {
+    background: #161b22;
+    border-bottom-color: #30363d;
+  }
+
+  .toolbar button {
+    color: #8b949e;
+  }
+
+  .toolbar button:hover {
+    background: #30363d;
+    border-color: #484f58;
+  }
+
+  .toolbar .divider {
+    background: #30363d;
+  }
+
+  .editor-textarea {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+
+  .editor-textarea::placeholder {
+    color: #6e7681;
+  }
+
+  .editor-preview {
+    background: #161b22;
+    color: #c9d1d9;
+  }
+
+  .editor-preview h1,
+  .editor-preview h2,
+  .editor-preview h3,
+  .editor-preview h4,
+  .editor-preview h5,
+  .editor-preview h6 {
+    color: #c9d1d9;
+    border-bottom-color: #30363d;
+  }
+
+  .editor-preview h6 {
+    color: #8b949e;
+  }
+
+  .editor-preview a {
+    color: #58a6ff;
+  }
+
+  .editor-preview code {
+    background-color: rgba(110, 118, 129, 0.4);
+  }
+
+  .editor-preview pre {
+    background-color: #161b22;
+  }
+
+  .editor-preview blockquote {
+    color: #8b949e;
+    border-left-color: #30363d;
+  }
+
+  .editor-preview table th,
+  .editor-preview table td {
+    border-color: #30363d;
+  }
+
+  .editor-preview table th {
+    background-color: #161b22;
+  }
+
+  .editor-preview table tr {
+    background-color: #0d1117;
+    border-top-color: #30363d;
+  }
+
+  .editor-preview table tr:nth-child(2n) {
+    background-color: #161b22;
+  }
+
+  .editor-preview hr {
+    background-color: #30363d;
+  }
+
+  /* KaTeX Dark Mode */
+  .editor-preview .katex {
+    color: #c9d1d9;
+  }
+
+  .editor-preview .katex-error {
+    color: #f85149;
+    background-color: rgba(248, 81, 73, 0.1);
+  }
+
+  .status-bar {
+    background: #161b22;
+    border-top-color: #30363d;
+    color: #8b949e;
+  }
+
+  .editor-textarea::-webkit-scrollbar-thumb,
+  .editor-preview::-webkit-scrollbar-thumb {
+    background: #484f58;
+  }
+
+  .editor-textarea::-webkit-scrollbar-thumb:hover,
+  .editor-preview::-webkit-scrollbar-thumb:hover {
+    background: #6e7681;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .editor-container {
+    flex-direction: column;
+  }
+
+  .editor-textarea,
+  .editor-preview {
+    width: 100%;
+    height: 50%;
+  }
+}
