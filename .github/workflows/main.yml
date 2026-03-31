@@ -8,6 +8,9 @@ on:
 
 jobs:
   release:
+    # 👇 添加这三行，提前选择使用 Node.js 24 运行 Actions
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: write # 必须赋予写入权限以创建 Release
     strategy:
